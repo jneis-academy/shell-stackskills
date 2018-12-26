@@ -29,3 +29,7 @@ echo $PASSWORD | passwd --stdin $USERNAME
 # Force password change on first login
 passwd $USERNAME -e
 
+# In order to login to the new user, use "su - username"
+
+# sample: jsmith / jsmith123
+
