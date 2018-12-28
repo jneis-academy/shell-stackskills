@@ -1,50 +1,82 @@
 #!/bin/bash
 
-# This script displays various information to the screen.
+# #!<interpreter-path>
+#  
+#  - shebang tells which interpreter to use
+#    when running commands inside the script 
+#
+#  - e.g.
+#   #!/usr/bin/python
+#  
+#  - equivalent to
+#    > /bin/bash <script-file>
 
-# Display 'Hello'
-echo 'Hello'
+# permissions
+#
+#  - drwxrwxrwx
+#    - d directory or - file
+#    - r read, w write, x execute, - none
+#    - first group is owner permissions
+#    - second group is group permissions
+#    - last group is other user's permission
+#  
+#  - e.g.
+#    > ls -l
+#      -rwxr-xr-x  1 josue staff 1143 Dec 7 21:38 luser-demo01.sh
 
-# Assign a value to a variable
+# chmod rwx <file>
+#
+#  - set permissions to files
+#
+#  - r = 4
+#  - w = 2
+#  - x = 1
+#  - - = 0 (none)
+
+# shell built-in commands
+#
+#  - can be executed directly in the shell,
+#    without needing to inform the command path or
+#    adding them to the system path
+#
+#  - e.g.
+#    > type -a echo
+#      echo is a shell builtin
+#      echo is /usr/bin/echo
+
+# man <command>
+#
+#  - displays commands documentation
+
+# script variables
+#
+#  - can be named with letters, digits and underscore
+#    (not starting with digits)
+#  - naming conventions tell to use uppercase
+#  
+#  - assignments CANNOT have spaces between
+#    variable, equal sign, and value
+#
+#  - single quotes prevent variable expansion
+#
+#  - $ is used to reference a variable's value
+#  - ${} must be used when appending content to variables 
+#
 WORD='script'
+ending='ed'
+ending='ing'
 
-# Variable names can include letters, digits, and underscore
-# Variable names can start with letters or underscore
-
-# Display that value using the variable
+# echo <content>
+#
+#  - prints content to stdout
+# 
+echo 'Hello'
 echo "$WORD"
-
-# Single quotes ignore variable interpolation
-# Double quotes allow variable interpolation
 echo '$WORD'
-
-# Combine the variable with hard-coded text
 echo "This is a shell $WORD"
-
-# Display the contents of the variable using an alternative syntax
 echo "This is a shell ${WORD}"
-
-# Append text to the variable
 echo "${WORD}ing is fun!"
-
-# Show how NOT to append text to a variable
-# This doesn't work
 echo "$WORDing is fun"
-
-# Variables can be named using lowercase
-# However, naming conventions say uppercase
-
-# Create a new variable
-ENDING='ed'
-
-# Combine the two variables
 echo "This is ${WORD}${ENDING}"
-
-# Change the value stored in the ENDING variable (reassignment)
-ENDING='ing'
 echo "${WORD}${ENDING} is fun!"
-
-# Reassign value to ENDING
-ENDING='s'
-echo "You are going to write many ${WORD}${ENDING} in this class!"
 
