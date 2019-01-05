@@ -99,8 +99,8 @@ fi
 # Arithmetic binary operators.
 #
 #  -eq, -ne, -lt, -le, -gt, -ge
-# 
-#  ==, !=, <, <=, >, >=
+#
+#  =, !=, <, <=, >, >=
 
 # ;
 #

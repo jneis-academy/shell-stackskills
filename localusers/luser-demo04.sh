@@ -1,35 +1,92 @@
 #!/bin/bash
 
-# This script creates an account on the local system
-# You will be prompted for the account name and password
+# read -p <prompt-message> <variable>
+#
+#  Reads a line from stdin into a variable.
+#
+#  -p <message> prompts the input with a message.
 
-# Ask for the username
 read -p 'Enter the username to create: ' USERNAME
+# Enter the username to create: 
+# Enter the username to create: doe
 
-# Ask for the real name
 read -p 'Enter the name of the person who this account is for: ' COMMENT
+# Enter the name of the person who this account is for: 
+# Enter the name of the person who this account is for: John Doe
 
-# Ask for the password
 read -p 'Enter the password to use for the account: ' PASSWORD
+# Enter the password to use for the account: 
+# Enter the password to use for the account: doe123
 
-# Create the user
+# useradd -c <comment> -m <home-folder>
+#
+#  Creates a local user.
+#
+#  -c adds a description to the new user.
+#  -m creates a home folder for the user.
+
 useradd -c "$COMMENT" -m $USERNAME
 
-# useradd -c option enables to add a description to the user created
-# useradd -m option enforce creating the new user a home folder
-# home folder creation default behavior is determined by CREATE_HOME variable
-# CREATE_HOME variable is usually set at /etc/login.defs file
+# su <username>
+#
+#  Substitutes current user.
+#
+# su - <username>
+#
+#  Substitutes current user and moves to target user environment
+#    (home folder, bash history, etc.).
+#
+# su -
+#
+#  Substitutes current user for root.
+#
+# E.g.
+#
+#  $ su doe
+#  $ whoami
+#  doe
+#  $ exit
+#  $ whoami
+#  root
 
-# Set the password for the user
+# passwd --stdin <username> 
+#
+#  Modifies a user password.
+#
+#  --stdin password should be read from stdin, which can be a pipe
+
+# <command> | <command>
+#
+#  Pipe (command pipeline).
+#  Takes stdout from first command and passes into sdtin of second command.
+#  stderr from first command is NOT passed into second command.
+
 echo $PASSWORD | passwd --stdin $USERNAME
+# Changing password for user doe.
+# passwd: all authentication tokens updated successfully.
 
-# --stdin uses the input from stdin
-# -e expires password at first login
+# passwd <username> -e
+#
+#  Expires a user's password on first login
 
-# Force password change on first login
 passwd $USERNAME -e
-
-# In order to login to the new user, use "su - username"
-
-# sample: jsmith / jsmith123
+# Expiring password for user doe.
+# passwd: Success
+#
+# E.g.
+#
+#  $ su jim
+#  $ whoami
+#  jim
+#  $ su doe
+#  Password: 
+#  Password: doe123
+#  You are required to change your password immediately (root enforced)
+#  Changing password for doe.
+#  (current) UNIX password:
+#  (current) UNIX password: doe123
+#  New password: 
+#  New password: 4567890john
+#  Retype new password: 
+#  Retype new password: 4567890john
 
