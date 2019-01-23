@@ -1,5 +1,7 @@
 #!/bin/bash
 
+# Getting started with shell scripting: naming, permissions, variables, built-ins.
+
 # #!<interpreter-path>
 #  
 #  Shebang tells which interpreter to use

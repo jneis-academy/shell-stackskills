@@ -1,5 +1,7 @@
 #!/bin/bash
 
+# Reading standard input, creating accounts, username conventions, more quoting.
+
 # read -p <prompt-message> <variable>
 #
 #  Reads a line from stdin into a variable.

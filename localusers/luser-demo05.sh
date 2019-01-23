@@ -2,54 +2,64 @@
 
 # Random data, cryptographic hash functions, text and string manipulation
 
-# Random numbers
-#
-#  > man bash
-#    /RANDOM
+# RANDOM
+# 
+#  bash built-in variable.
+#  Generates a random integer between 0 and 32767 each time it is referenced.
 #
 echo "$RANDOM"
 echo "${RANDOM}${RANDOM}${RANDOM}"
+# 7488
+# 389143429501
 
-# Current date/time
+# date +<format>
 #
-#  > man date
-#  > man strftime
+#  Returns current date and time.
+#  Output format includes: %s (epoch)
+#  
+#  > man strftime (documents output formats on MacOS)
 #
-# strftime command formats date and time
-#   (man page docs formats)
-#
-#  date + (custom output format)
-#  %s (epoch)
-#  #N (nanoseconds)
 echo $(date +%s)
-echo $(date +%s%N)
+# 1548283587
 
-# Checksum (SHA256)
+# sha256sum <stream>
 #
-#  > man sha256sum
-#  > man head
+#  Generates SHA checksums for a stream (file or pipe).
 #
-# head command outputs first lines of files
+echo $(date +%s | sha256sum)
+# 494140457a9dd639214e2c82908e64ba052d62bcf6611c1c0be1faa1b8d21010 -
+
+# head -n<number> <stream>
 #
-#  sha256sum file
-#  <some-output> | sha256sum
+#  Prints first lines of file or pipe.
 #
-#  head -nX file (prints X first lines of file)
-#  <some-output> | head -cX (prints X first chars)
-# 
+# head -c<number> <stream>
+#
+#  Prints first characters of stream
+#
 echo $(date +%s | sha256sum | head -c8)
+# 7524ff87
 
-# Random special chars 
+SPECIAL_CHARS='!@#$%ˆ&()_-+='
+
+# fold -w<number>
 #
-#  > man shuf
-#  > man fold
+#  Wraps input lines to fit in specified width.
 #
-# shuf command writes a random permutation of input lines
-# 
-# fold command wrap input lines to fit in specified width
+#  -w<number> breaks content into lines of <number> columns.
 #
-#  <some-output> | fold -w1 (breaks content into lines of 1 column)
+echo $(echo $SPECIAL_CHARS | fold -w1)
+# ! @ # $ % ? ? & ( ) _ - + =
+
+# shuf
 #
-SPECIAL_CHARS='!@#$%ˆ&*()_-+='
+#  Writes a random permutation of input lines.
+#
+echo $(echo $SPECIAL_CHARS | fold -w1 | shuf)
+echo $(echo $SPECIAL_CHARS | fold -w1 | shuf)
+# @ % ( = $ _ ? & ) - # + ? !
+# # ) ( ! % - ? & @ + ? $ _ =
+
 echo $(echo $SPECIAL_CHARS | fold -w1 | shuf | head -c1)
+# %
 

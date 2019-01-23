@@ -33,6 +33,8 @@ then
   echo "Could not create user"
   exit 1
 fi 
+# REVIEW: 
+# - ? holds the exit status code from last executed command
 
 echo "$PASSWORD" | passwd --stdin ${USERNAME}
 # REVIEW:

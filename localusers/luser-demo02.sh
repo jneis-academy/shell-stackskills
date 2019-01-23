@@ -1,5 +1,7 @@
 #!/bin/bash
 
+# Special variables, pseudocode, command substitution, if statements, conditionals.
+
 # UID
 # 
 #  Read-only, preset shell variable.

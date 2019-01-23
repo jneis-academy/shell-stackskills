@@ -1,5 +1,6 @@
 #!/bin/bash
 
+# Exit statuses, return codes, string test conditionals, more special variables.
 
 # Only display if the UID does NOT match 0
 UID_TO_TEST_FOR=0
