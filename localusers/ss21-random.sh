@@ -40,7 +40,7 @@ echo $(date +%s | sha256sum)
 echo $(date +%s | sha256sum | head -c8)
 # 7524ff87
 
-SPECIAL_CHARS='!@#$%ˆ&()_-+='
+SPECIAL_CHARS='@#$%ˆ&()_-+='
 
 # fold -w<number>
 #
@@ -49,17 +49,17 @@ SPECIAL_CHARS='!@#$%ˆ&()_-+='
 #  -w<number> breaks content into lines of <number> columns.
 #
 echo $(echo $SPECIAL_CHARS | fold -w1)
-# ! @ # $ % ? ? & ( ) _ - + =
+# @ # $ % ? ? & ( ) _ - + =
 
-# shuf
+# sort -R
 #
 #  Writes a random permutation of input lines.
 #
-echo $(echo $SPECIAL_CHARS | fold -w1 | shuf)
-echo $(echo $SPECIAL_CHARS | fold -w1 | shuf)
-# @ % ( = $ _ ? & ) - # + ? !
-# # ) ( ! % - ? & @ + ? $ _ =
+echo $(echo $SPECIAL_CHARS | fold -w1 | sort -R)
+echo $(echo $SPECIAL_CHARS | fold -w1 | sort -R)
+# @ % ( = $ _ ? & ) - # + ?
+# # ) ( % - ? & @ + ? $ _ =
 
-echo $(echo $SPECIAL_CHARS | fold -w1 | shuf | head -c1)
+echo $(echo $SPECIAL_CHARS | fold -w1 | sort -R | head -c1)
 # %
 
